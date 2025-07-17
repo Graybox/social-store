@@ -1,4 +1,11 @@
 {
     "festival.janmashtami": "శ్రీకృష్ణ జన్మాష్టమి",
-    "festival.vinayaka_chaturthi": "వినాయక చవితి"
+    "festival.vinayaka_chaturthi": "వినాయక చవితి",
+    "tithi.0": "శుక్ల ప్రతిపద",
+    "tithi.1": "శుక్ల ద్వితీయ",
+    "nakshatra.0": "అశ్వినీ",
+    "nakshatra.3": "రోహిణి",
+    "weekday.0": "సోమవారం",
+    "weekday.3": "గురువారం",
+    "choghadiya.char": "చర"
 }

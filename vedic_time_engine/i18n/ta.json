@@ -1,4 +1,11 @@
 {
     "festival.janmashtami": "கிருஷ்ண ஜயந்தி",
-    "festival.vinayaka_chaturthi": "விநாயகர் சதுர்த்தி"
+    "festival.vinayaka_chaturthi": "விநாயகர் சதுர்த்தி",
+    "tithi.0": "சுக்ல பிரதிபத",
+    "tithi.1": "சுக்ல த்விதியை",
+    "nakshatra.0": "அஸ்வினி",
+    "nakshatra.3": "ரோஹிணி",
+    "weekday.0": "திங்கள்",
+    "weekday.3": "வியாழன்",
+    "choghadiya.char": "சர்"
 }
