@@ -11,6 +11,8 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+from ..i18n.lang import get_translation as _translate, load_language
+
 
 KARANA_SEQUENCE = [
     "kimstughna",
@@ -41,10 +43,8 @@ def _load_translations(lang: str) -> dict[str, str]:
     key will be returned verbatim.
     """
 
-    base = Path(__file__).resolve().parents[2] / "i18n" / f"{lang}.json"
     try:
-        with base.open(encoding="utf-8") as f:
-            return json.load(f)
+        return load_language(lang)
     except FileNotFoundError:
         return {}
 
@@ -55,7 +55,7 @@ def get_translation(key: str, lang: str = "en") -> str:
     Falls back to ``key`` if the translation is unavailable.
     """
 
-    return _load_translations(lang).get(key, key)
+    return _translate(key, lang)
 
 
 def get_karana_name(index: int, lang: str = "en") -> str:

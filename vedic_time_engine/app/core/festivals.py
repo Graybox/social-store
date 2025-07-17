@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List
 
-from ..i18n import get_translation
+from ..i18n.lang import get_translation
 
 
 def get_festivals(

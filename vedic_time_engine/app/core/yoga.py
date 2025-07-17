@@ -7,6 +7,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict
 
+from ..i18n.lang import get_translation as _translate, load_language
+
 I18N_DIR = Path(__file__).resolve().parents[2] / "i18n"
 
 
@@ -22,8 +24,7 @@ def _load_translations(lang: str) -> Dict[str, str]:
     path = I18N_DIR / f"{lang}.json"
     if path.exists():
         try:
-            with path.open("r", encoding="utf-8") as f:
-                return json.load(f)
+            return load_language(lang)
         except json.JSONDecodeError:
             return {}
     return {}
@@ -32,8 +33,7 @@ def _load_translations(lang: str) -> Dict[str, str]:
 def get_translation(key: str, lang: str = "en") -> str:
     """Return the translation for ``key`` in ``lang`` if available."""
 
-    translations = _load_translations(lang)
-    return translations.get(key, key)
+    return _translate(key, lang)
 
 
 def get_yoga_index(sun_lon: float, moon_lon: float) -> int:
