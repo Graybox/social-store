@@ -1,4 +1,11 @@
 {
     "festival.janmashtami": "जन्माष्टमी",
-    "festival.vinayaka_chaturthi": "विनायक चतुर्थी"
+    "festival.vinayaka_chaturthi": "विनायक चतुर्थी",
+    "tithi.0": "शुक्ल प्रतिपदा",
+    "tithi.1": "शुक्ल द्वितीया",
+    "nakshatra.0": "अश्विनी",
+    "nakshatra.3": "रोहिणी",
+    "weekday.0": "सोमवार",
+    "weekday.3": "गुरुवार",
+    "choghadiya.char": "चर"
 }

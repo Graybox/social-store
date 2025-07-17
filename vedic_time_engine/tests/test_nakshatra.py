@@ -13,6 +13,5 @@ def test_get_nakshatra_index_wrap():
     assert get_nakshatra_index(-0.1) == 26
 
 
-def test_get_nakshatra_name_fallback():
-    # translations are empty so fallback to key
-    assert get_nakshatra_name(0, "en") == "nakshatra.0"
+def test_get_nakshatra_name_translation():
+    assert get_nakshatra_name(0, "en") == "Ashwini"

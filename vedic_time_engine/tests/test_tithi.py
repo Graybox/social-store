@@ -14,8 +14,7 @@ def test_get_tithi_index_basic():
     assert get_tithi_index(359, 0) == 29
 
 
-def test_get_tithi_name_fallback():
-    # With empty translations, returns key
-    assert get_tithi_name(0, "en") == "tithi.0"
-    assert get_tithi_name(5, "en") == "tithi.5"
+def test_get_tithi_name_translation():
+    assert get_tithi_name(0, "en") == "Shukla Pratipada"
+    assert get_tithi_name(1, "en") == "Shukla Dwitiya"
 
