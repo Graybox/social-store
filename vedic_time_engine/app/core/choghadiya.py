@@ -7,20 +7,15 @@ import os
 from datetime import datetime, timedelta
 from typing import Dict, List
 
+from ..i18n.lang import get_translation as _translate
+
 
 CYCLE = ["Udveg", "Chal", "Labh", "Amrit", "Kaal", "Shubh", "Rog"]
 
 
 def get_translation(key: str, lang: str) -> str:
     """Return translation for ``key`` in ``lang`` if available."""
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    file_path = os.path.join(base_dir, "i18n", f"{lang}.json")
-    try:
-        with open(file_path, "r", encoding="utf-8") as fh:
-            data = json.load(fh)
-        return data.get(key, key)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return key
+    return _translate(key, lang)
 
 
 def get_choghadiya_blocks(

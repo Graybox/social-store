@@ -9,6 +9,8 @@ from zoneinfo import ZoneInfo
 
 from dateutil import parser
 
+from ..i18n.lang import get_translation as _translate, load_language
+
 
 _TRANSLATIONS: dict[str, dict[str, str]] = {}
 
@@ -20,17 +22,12 @@ def get_translation(key: str, lang: str) -> str:
     """
 
     if lang not in _TRANSLATIONS:
-        i18n_path = Path(__file__).resolve().parents[2] / "i18n" / f"{lang}.json"
-        if i18n_path.exists():
-            try:
-                with i18n_path.open("r", encoding="utf-8") as f:
-                    _TRANSLATIONS[lang] = json.load(f)
-            except json.JSONDecodeError:
-                _TRANSLATIONS[lang] = {}
-        else:
+        try:
+            _TRANSLATIONS[lang] = load_language(lang)
+        except FileNotFoundError:
             _TRANSLATIONS[lang] = {}
 
-    return _TRANSLATIONS[lang].get(key, key)
+    return _translate(key, lang)
 
 
 _EN_WEEKDAYS = [

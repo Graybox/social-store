@@ -6,6 +6,8 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+from ..i18n.lang import get_translation as _translate, load_language
+
 
 I18N_DIR = Path(__file__).resolve().parents[2] / "i18n"
 
@@ -18,8 +20,7 @@ def _load_translations(lang: str) -> dict:
     if not file_path.exists():
         return {}
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        return load_language(lang)
     except Exception:
         return {}
 
@@ -27,8 +28,7 @@ def _load_translations(lang: str) -> dict:
 def get_translation(key: str, lang: str = "en") -> str:
     """Return the localized string for ``key`` or the key if missing."""
 
-    translations = _load_translations(lang)
-    return translations.get(key, key)
+    return _translate(key, lang)
 
 
 def get_nakshatra_index(moon_lon: float) -> int:

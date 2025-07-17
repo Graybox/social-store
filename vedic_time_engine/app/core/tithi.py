@@ -1,6 +1,6 @@
 """Tithi (lunar day) calculations."""
 
-from ...i18n import get_translation
+from ..i18n.lang import get_translation
 
 
 def get_tithi_index(moon_lon: float, sun_lon: float) -> int:
