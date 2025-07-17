@@ -2,15 +2,15 @@
 
 from typing import Any, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Location(BaseModel):
     """Geographic location details."""
 
-    lat: float
-    long: float
-    tz: str
+    lat: float = Field(..., example=19.076)
+    long: float = Field(..., example=72.8777)
+    tz: str = Field(..., example="Asia/Kolkata")
 
 
 class VedicTimeResponse(BaseModel):
@@ -30,28 +30,28 @@ class VedicTimeResponse(BaseModel):
         schema_extra = {
             "example": {
                 "date": "2025-07-17",
-                "location": {"lat": 12.97, "long": 77.59, "tz": "Asia/Kolkata"},
-                "sun": {"sunrise": "06:00", "sunset": "18:30"},
+                "location": {"lat": 19.076, "long": 72.8777, "tz": "Asia/Kolkata"},
+                "sun": {"sunrise": "06:02", "sunset": "18:55"},
                 "vedic_time": {
                     "weekday": "Thursday",
-                    "tithi": {"name": "Shukla Paksha Pratipada"},
-                    "nakshatra": "Ashwini",
-                    "yoga": "Shubha",
-                    "karana": "Bava",
-                    "ghati": 10,
-                    "vighati": 20,
+                    "tithi": {"name": "Shukla Chaturthi"},
+                    "nakshatra": "Rohini",
+                    "yoga": "Vyatipata",
+                    "karana": "Vanija",
+                    "ghati": 21,
+                    "vighati": 43,
                 },
                 "choghadiya": {
                     "day": [
-                        {"start": "06:00", "end": "07:30", "type": "Udveg"}
+                        {"start": "06:02", "end": "07:32", "type": "Char"}
                     ],
                     "night": [
-                        {"start": "19:00", "end": "20:30", "type": "Rog"}
+                        {"start": "19:01", "end": "20:31", "type": "Labh"}
                     ],
                 },
-                "rahukalam": {"start": "13:30", "end": "15:00"},
-                "abhijit_muhurta": {"start": "12:00", "end": "12:48"},
-                "festivals": ["Guru Purnima"],
+                "rahukalam": {"start": "09:08", "end": "10:38"},
+                "abhijit_muhurta": {"start": "12:13", "end": "13:01"},
+                "festivals": ["Vinayaka Chaturthi"],
                 "adhik_maas": False,
             }
         }
