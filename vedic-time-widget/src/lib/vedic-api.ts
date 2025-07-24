@@ -36,7 +36,7 @@ function getTimezoneOffset(): string {
   const hours = Math.floor(Math.abs(offset) / 60);
   const minutes = Math.abs(offset) % 60;
   const sign = offset <= 0 ? '+' : '-';
-  
+
   return `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
@@ -54,47 +54,16 @@ export async function fetchVedicTime(
       lang: language
     });
 
-    // For demo purposes, we'll simulate API response since we don't have a real endpoint
-    // In production, this would be: const response = await fetch(`/vedic-time?${params}`);
-    
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Mock response data
-    const now = new Date();
-    const mockData: VedicTimeData = {
-      date: now.toLocaleDateString('hi-IN', { 
-        day: '2-digit', 
-        month: 'long', 
-        year: 'numeric' 
-      }),
-      weekday: now.toLocaleDateString('hi-IN', { weekday: 'long' }),
-      tithi: {
-        name: 'शुक्ल चतुर्थी',
-        time_range: '04:34 – 05:12'
-      },
-      nakshatra: 'रोहिणी',
-      yoga: 'व्यतीपात',
-      karana: 'वणिज',
-      sunrise: '06:02',
-      sunset: '18:55',
-      rahukalam: {
-        start: '09:08',
-        end: '10:38'
-      },
-      abhijit_muhurta: {
-        start: '12:13',
-        end: '13:01'
-      },
-      ghati: Math.floor(Math.random() * 60),
-      vighati: Math.floor(Math.random() * 60),
-      festivals: Math.random() > 0.5 ? ['विनायक चतुर्थी'] : []
-    };
+    const baseUrl =
+      (import.meta as any).env.VITE_ENGINE_BASE_URL || 'http://localhost:8080';
+    const response = await fetch(`${baseUrl}/vedic-time?${params.toString()}`);
 
-    return {
-      success: true,
-      data: mockData
-    };
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const data: VedicTimeData = await response.json();
+    return { success: true, data };
   } catch (error) {
     return {
       success: false,
@@ -102,6 +71,7 @@ export async function fetchVedicTime(
     };
   }
 }
+
 
 export function getSystemLanguage(): string {
   const lang = navigator.language.toLowerCase();

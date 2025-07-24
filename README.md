@@ -32,8 +32,18 @@ pip install -r requirements.txt
 ```
 Run locally:
 ```bash
-uvicorn app.main:app --reload
+uvicorn vedic_time_engine.app.main:app --reload --port 8080
 ```
+
+### Widget
+In another terminal install the widget dependencies and start its dev server:
+
+```bash
+cd vedic-time-widget
+npm install
+VITE_ENGINE_BASE_URL=http://localhost:8080 npm run dev
+```
+The widget will fetch data from the running API.
 
 ### Docker
 Place Swiss Ephemeris data in `ephe/` before building or mount it at runtime.
